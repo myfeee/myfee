@@ -1,0 +1,181 @@
+@import "stylesnull.scss";
+//?===================================================================================================
+//?шрифты
+$fBang: "Bangers", cursive;
+$fElite: "Special Elite", cursive;
+$fIndie: "Indie Flower", cursive;
+//?цвета элементов
+$colorMain: #008000;
+$colorHelp: #3a0404;
+//?медиа
+$md1: 992px;
+$md2: 768px;
+//?===================================================================================================
+.wrapper {
+  background: linear-gradient(to bottom, $colorHelp, #520404);
+  width: 100%;
+  font-family: $fIndie;
+  font-size: 15px;
+  min-height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+.zcontainer {
+  max-width: 1100px;
+  margin: 0px auto;
+}
+//?===================================================================================================
+
+.header {
+  border-bottom: 3px solid $colorMain;
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    @media (max-width: $md1) {
+      flex-direction: column;
+    }
+    @media (max-width: $md2) {
+      padding: 10px 20px;
+    }
+  }
+
+  &__logo {
+    font-family: $fBang;
+  }
+
+  &__text {
+    display: flex;
+    align-items: center;
+    color: white;
+    letter-spacing: 2px;
+    @media (max-width: $md2) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+  &__text > span {
+    line-height: 20px;
+    display: inline-block;
+    padding: 10px 0;
+  }
+  &__text > a {
+    color: $colorMain;
+    font-size: 72px;
+    margin: 0px 30px 0px 0px;
+    animation: logoAnime 10s ease forwards infinite alternate;
+    letter-spacing: 10px;
+    @media (max-width: $md2) {
+      margin: 0px;
+    }
+  }
+
+  &__menu {
+    @media (max-width: 500px) {
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+
+  &__items {
+    font-family: $fElite;
+    display: flex;
+    @media (max-width: 500px) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  &__item {
+    margin: 5px 0px 5px 10px;
+    padding: 10px 10px 7px;
+    border: 1px solid $colorMain;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 0px 20px 0px 20px;
+    @media (max-width: 500px) {
+      width: 90%;
+      margin: 5px 0px;
+    }
+  }
+  @media (min-width: $md1) {
+    &__item:hover {
+      background: linear-gradient(120deg, $colorMain, #dadb70);
+      border: none;
+      a {
+        color: $colorHelp;
+      }
+      animation: menuItemAnime 1s ease forwards;
+    }
+  }
+
+  &__item > a {
+    color: $colorMain;
+  }
+}
+@keyframes menuItemAnime {
+  0% {
+    transform: rotate(0);
+  }
+  20% {
+    transform: rotate(-20deg) scale(0.8);
+  }
+  100% {
+    transform: rotate(370deg) scale(2);
+  }
+}
+@keyframes logoAnime {
+  0% {
+    color: #ffff00;
+  }
+  50% {
+    color: $colorMain;
+  }
+  100% {
+    color: #0000ff;
+  }
+}
+//?===================================================================================================
+
+//?===================================================================================================
+.footer {
+  border-top: 3px solid $colorMain;
+  &__container {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    @media (max-width: $md2) {
+      flex-direction: column;
+    }
+  }
+
+  &__content {
+    font-size: 15px;
+    text-align: center;
+    padding: 0px 5px;
+    flex: 0 0 40%;
+    color: white;
+    @media (max-width: $md2) {
+      flex: 0 0 100%;
+    }
+  }
+  &__icons {
+    flex: 0 0 20%;
+    display: flex;
+    justify-content: center;
+    @media (max-width: $md2) {
+      flex: 0 0 100%;
+    }
+  }
+
+  &__icon {
+    flex: 0 0 25%;
+  }
+  &__icon img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
