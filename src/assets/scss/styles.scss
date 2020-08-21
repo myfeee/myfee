@@ -1,9 +1,8 @@
 @import "stylesnull.scss";
 //?===================================================================================================
 //?шрифты
-$fBang: "Bangers", cursive;
-$fElite: "Special Elite", cursive;
-$fIndie: "Indie Flower", cursive;
+$fLobster: "Lobster", cursive;
+$fMarck: "Marck Script", cursive;
 //?цвета элементов
 $colorMain: #008000;
 $colorHelp: #3a0404;
@@ -14,7 +13,7 @@ $md2: 768px;
 .wrapper {
   background: linear-gradient(to bottom, $colorHelp, #520404);
   width: 100%;
-  font-family: $fIndie;
+  font-family: $fMarck;
   font-size: 15px;
   min-height: 100%;
   display: flex;
@@ -24,9 +23,9 @@ $md2: 768px;
 .zcontainer {
   max-width: 1100px;
   margin: 0px auto;
+  overflow: hidden;
 }
 //?===================================================================================================
-
 .header {
   border-bottom: 3px solid $colorMain;
   &__container {
@@ -40,10 +39,6 @@ $md2: 768px;
     @media (max-width: $md2) {
       padding: 10px 20px;
     }
-  }
-
-  &__logo {
-    font-family: $fBang;
   }
 
   &__text {
@@ -60,6 +55,7 @@ $md2: 768px;
     line-height: 20px;
     display: inline-block;
     padding: 10px 0;
+    font-family: $fLobster;
   }
   &__text > a {
     color: $colorMain;
@@ -80,7 +76,7 @@ $md2: 768px;
   }
 
   &__items {
-    font-family: $fElite;
+    font-family: $fLobster;
     display: flex;
     @media (max-width: 500px) {
       flex-direction: column;
@@ -100,18 +96,21 @@ $md2: 768px;
       margin: 5px 0px;
     }
   }
+  &__item.active {
+    background: linear-gradient(120deg, $colorMain, #dadb70);
+    border: none;
+    color: $colorHelp;
+  }
   @media (min-width: $md1) {
     &__item:hover {
       background: linear-gradient(120deg, $colorMain, #dadb70);
       border: none;
-      a {
-        color: $colorHelp;
-      }
+      color: $colorHelp;
       animation: menuItemAnime 1s ease forwards;
     }
   }
 
-  &__item > a {
+  &__item {
     color: $colorMain;
   }
 }
@@ -138,7 +137,128 @@ $md2: 768px;
   }
 }
 //?===================================================================================================
+//?основной блок с динамическим содержимым
+.main {
+  font-size: 25px;
+  flex: 1 1 auto;
+  &__container {
+    padding: 20px;
+    color: white;
+  }
 
+  // &__who {
+  // }
+}
+//?===================================================================================================
+//?блок для управления отображаемым контентом
+.element {
+  opacity: 0;
+  display: none;
+  visibility: hidden;
+  transition: opacity 1s ease;
+}
+.element.display {
+  display: block;
+}
+.element.visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0s ease;
+}
+//?===================================================================================================
+//?блок "кто я?"
+.who-main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: center;
+  &__title {
+    margin: 0 auto;
+    padding: 5px 20px 20px;
+    @media (max-width: 768px) {
+      padding: 0 0 15px;
+    }
+    opacity: 0;
+    transform: translate(0, 50%);
+    transition: all 1s ease;
+  }
+  &__title.visible {
+    opacity: 1;
+    transform: translate(0);
+  }
+
+  &__top-content,
+  &__bottom-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px 20px;
+    @media (max-width: 768px) {
+      flex-direction: column;
+      padding: 0 0 20px;
+    }
+  }
+
+  &__image {
+    flex: 0 0 50%;
+    display: flex;
+    justify-content: center;
+    max-height: 400px;
+    opacity: 0;
+    transform: translate(-50%);
+    transition: all 1s ease;
+  }
+  &__image-right {
+    transform: translate(50%);
+    transition: all 1s ease;
+  }
+  &__image.visible {
+    opacity: 1;
+    transform: translate(0);
+  }
+  &__image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 0px 100px 0px 100px;
+  }
+
+  &__text {
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0px;
+    justify-content: center;
+    opacity: 0;
+  }
+  &__text.visible {
+    opacity: 1;
+    transform: translate(0);
+  }
+
+  &__text-left {
+    align-items: flex-start;
+    padding-left: 20px;
+    transform: translate(50%);
+    transition: all 1s ease;
+    @media (max-width: 768px) {
+      padding: 0;
+    }
+  }
+  &__text-right {
+    align-items: flex-end;
+    padding-right: 20px;
+    transform: translate(-50%);
+    transition: all 1s ease;
+    @media (max-width: 768px) {
+      padding: 0;
+    }
+  }
+  &__text > li {
+    padding: 10px 0;
+  }
+}
 //?===================================================================================================
 .footer {
   border-top: 3px solid $colorMain;
